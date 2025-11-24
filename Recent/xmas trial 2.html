@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Merry Christmas Wishes TV/Desktop</title>
+  <style>
+    /* Base styling for big screens - desktop and TV */
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #e3f0f7, #8ac5d8);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #202020;
+      user-select: none;
+      height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 40px 80px 40px;
+      box-sizing: border-box;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Calendar icon top-left */
+    .calendar-icon {
+      position: fixed;
+      top: 40px;
+      left: 40px;
+      width: 70px;
+      user-select: none;
+      cursor: default;
+      z-index: 1001;
+      text-align: center;
+      font-size: 0;
+    }
+
+    .calendar-icon img {
+      width: 100%;
+      display: block;
+      height: 200px;
+      width: 200px;
+    }
+
+    .calendar-text {
+      font-family: 'Great Vibes', cursive;
+      font-size: 40px;
+      color: #1f5ed9;
+      user-select: none;
+      margin-top: -14px;
+      font-weight: 600;
+      text-align: center;
+      letter-spacing: 0.05em;
+    
+     
+    }
+
+    .calendar-subtext {
+      font-size: 38px;
+      color: #bf6c05;
+      font-weight: 700;
+      text-align: center;
+      user-select: none;
+      margin-top: -6px;
+      letter-spacing: 0.07em;
+      
+    }
+
+    /* Hamburger menu top-right */
+    .hamburger {
+      position: fixed;
+      top: 44px;
+      right: 44px;
+      width: 30px;
+      height: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .hamburger span {
+      height: 4px;
+      background-color: #000;
+      border-radius: 10px;
+      display: block;
+      box-shadow: 0 1px 4px #aaa;
+    }
+
+    /* Heading text */
+    h1 {
+      font-weight: 900;
+      font-size: 96px;
+      margin: 0;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #000;
+      letter-spacing: 5px;
+      position: relative;
+      text-transform: uppercase;
+    }
+
+    h1::before {
+      content: 'MERRY';
+      color: #d12c2c;
+      font-weight: 900;
+      font-size: 40px;
+      position: absolute;
+      top: -44px;
+      left: 50%;
+      transform: translateX(-50%);
+      user-select: none;
+      letter-spacing: 5px;
+      font-family: 'Segoe UI Black', Arial Black, Arial, sans-serif;
+    }
+
+    /* Center tree & gifts container */
+    .tree-container {
+      width: 480px;
+      margin: 0 auto 120px;
+      user-select: none;
+      position: relative;
+      filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.12));
+    }
+
+    .tree-container img {
+      width: 200%;
+      height: auto;
+      display: block;
+      user-select: none;
+      pointer-events: none;
+      margin-left: -200px;
+    }
+
+    /* Top 3 scoreboard bars top right with medal icons */
+    .top3-scoreboard {
+      position: fixed;
+      bottom: 610px;
+      right: 60px;
+      width: 400px;
+      user-select: none;
+      z-index: 10;
+      font-weight: 100;
+      font-size: 14px;
+      color: #2f2f2f;
+      font-family: Arial Black, Arial, sans-serif;
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      grid-gap: 10px 30px;
+      align-items: center;
+      
+    }
+
+    .medal-icon {
+      width: 36px;
+      height: 40px;
+      user-select: none;
+    }
+
+    .score-bar {
+      height: 55px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      padding-left: 18px;
+      color: #2c2c2c;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      box-shadow: inset 0 0 8px rgb(0 0 0 / 0.08);
+    }
+
+    .score-bar.red {
+      background: linear-gradient(to right, #db0000, #f3aaaa);
+      color: #330000;
+    }
+
+    .score-bar.green {
+      background: linear-gradient(to right, #299d29, #ade1ad);
+      color: #044404;
+    }
+
+    .score-bar.yellow {
+      background: linear-gradient(to right, #b0ac43, #ecf4af);
+      color: #323300;
+    }
+
+    /* Bottom container: inputs on left, comments on right */
+    .bottom-container {
+      width: 1000px;
+      max-width: 150vw;
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+      position: relative;
+      user-select: none;
+      z-index: 10;
+      margin-left:-200px;
+    }
+
+    /* Input form styling for TV/desktop */
+    .wish-form {
+      flex: 1;
+      backdrop-filter: saturate(180%) blur(32px);
+      background: rgba(255 255 255 / 0.38);
+      border-radius: 35px;
+      padding: 50px 50px 50px 50px;
+      box-shadow: 0 5px 30px rgb(0 0 0 / 0.08);
+      display: flex;
+      flex-direction: column;
+      user-select: text;
+      max-width: 420px;
+      min-width: 380px;
+    }
+
+    .wish-form h2 {
+      font-family: 'Comic Sans MS', cursive;
+      font-size: 28px;
+      font-weight: 700;
+      color: #191919dd;
+      margin: 0 0 35px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      user-select: none;
+    }
+
+    .wish-form h2 span {
+      font-size: 44px;
+      user-select: none;
+    }
+
+    .wish-form input,
+    .wish-form textarea {
+      border-radius: 40px;
+      border: none;
+      outline: none;
+      background: rgba(255 255 255 / 0.9);
+      padding: 20px 36px;
+      font-weight: 600;
+      font-size: 18px;
+      color: #2c2c2c;
+      margin-bottom: 32px;
+      resize: none;
+      font-family: inherit;
+      transition: background-color 0.3s ease;
+      box-shadow: inset 0 0 15px rgb(0 0 0 / 0.06);
+    }
+
+    .wish-form input:focus,
+    .wish-form textarea:focus {
+      background: rgba(255 255 255 1);
+      color: #111;
+    }
+
+    .wish-form input::placeholder,
+    .wish-form textarea::placeholder {
+      color: #a0aebc;
+      font-weight: 600;
+      font-style: italic;
+    }
+
+    .wish-form button {
+      font-weight: 800;
+      background: linear-gradient(120deg, #174766, #64bad4);
+      border: none;
+      border-radius: 40px;
+      padding: 18px 0;
+      cursor: pointer;
+      font-size: 22px;
+      color: white;
+      box-shadow: 0 6px 20px rgb(60 94 129 / 0.75);
+      transition: background 0.4s ease;
+      user-select: none;
+      letter-spacing: 1.1px;
+    }
+
+    .wish-form button:hover {
+      background: linear-gradient(120deg, #132f48, #3c89b6);
+    }
+
+    /* Live comments container */
+    .live-comments {
+      flex: 1;
+      backdrop-filter: saturate(180%) blur(32px);
+      background: rgba(255 255 255 / 0.9);
+      border-radius: 25px;
+      padding: 50px 40px 50px 40px;
+      box-shadow: 0 5px 30px rgb(0 0 0 / 0.08);
+      display: flex;
+      flex-direction: column;
+      color: #565656dd;
+      font-size: 18px;
+      max-height: 460px;
+      overflow-y: auto;
+      user-select: text;
+      min-width: 700px;
+      position: relative;
+    }
+
+    .live-comments h3 {
+      font-weight: 800;
+      font-size: 26px;
+      margin: 0 0 30px 0;
+      color: #a6a6a6;
+      font-family: serif;
+      letter-spacing: 0.06em;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .live-comments h3 span {
+      font-size: 32px;
+    }
+
+    /* Single comment */
+    .comment {
+      border-radius: 20px;
+      background: #ffffffee;
+      margin-bottom: 22px;
+      padding: 22px 28px;
+      box-shadow: 0 0 10px rgb(0 0 0 / 0.07);
+      user-select: text;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 18px;
+    }
+
+    .comment .name {
+      font-weight: 700;
+      font-size: 16px;
+      color: #373737cc;
+      letter-spacing: 0.03em;
+      user-select: text;
+    }
+
+    .comment .time {
+      font-size: 10px;
+      color: #777777cc;
+      user-select: none;
+      position: absolute;
+      top: 22px;
+      right: 24px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+    }
+
+    .comment .text {
+      font-weight: 600;
+      color: #2b2b2bdd;
+      user-select: text;
+      white-space: pre-wrap;
+    }
+
+    /* Like container */
+    .like-container {
+      margin-top: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      user-select: none;
+      cursor: pointer;
+      width: fit-content;
+      color: #555555cc;
+      transition: color 0.3s ease;
+      font-weight: 600;
+      font-size: 16px;
+      user-select: none;
+    }
+
+    .like-container:hover {
+      color: #d71717;
+    }
+
+    /* Thumbs up icon */
+    .like-icon {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+      user-select: none;
+      transition: transform 0.2s ease;
+    }
+
+    .like-container.liked {
+      color: #d71717;
+    }
+
+    .like-container.liked .like-icon {
+      transform: scale(1.3);
+    }
+
+    /* Scrollbar styles */
+    .live-comments::-webkit-scrollbar {
+      width: 9px;
+    }
+
+    .live-comments::-webkit-scrollbar-thumb {
+      background: #64bad4cc;
+      border-radius: 20px;
+    }
+
+    .live-comments::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    /* Snowflake style & animation */
+    .snowflake {
+      position: fixed;
+      top: -15px;
+      color: #fff;
+      user-select: none;
+      pointer-events: none;
+      font-size: 18px;
+      opacity: 0.8;
+      z-index: 1500;
+      animation-name: fall, sway;
+      animation-timing-function: linear, ease-in-out;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(100vh);
+      }
+    }
+
+    @keyframes sway {
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      50% {
+        transform: translateX(15px);
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Calendar top left -->
+  <div class="calendar-icon" aria-label="Christmas Day Calendar Icon">
+    <img src="https://static.vecteezy.com/system/resources/previews/009/875/159/large_2x/3d-calendar-icon-date-25-red-color-free-png.png" alt="Red calendar showing 25" />
+    <div class="calendar-text">Blessed</div>
+    <div class="calendar-subtext">CHRISTMAS </div>
+  </div>
+
+  <!-- Hamburger menu top right -->
+  <div class="hamburger" aria-label="Menu" role="button" tabindex="0">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Main heading -->
+  <h1>CHRISTMAS</h1>
+  <div class="underline-blue"></div>
+
+  <!-- Centered Tree -->
+  <div class="tree-container" aria-label="Christmas tree with gifts and black cat">
+    <img class="medal-icon" src="https://png.pngtree.com/png-clipart/20230913/original/pngtree-free-animated-christmas-vector-png-image_11062398.png" alt="First place medal">
+
+  </div>
+
+  <!-- Top 3 scoreboard bars top right with medal icons -->
+  <div class="top3-scoreboard" aria-label="Top 3 highest liked comments">
+    <img class="medal-icon" src="https://png.pngtree.com/png-clipart/20230806/original/pngtree-gold-medal-set-badge-vector-the-best-award-png-image_9445686.png" alt="First place medal" />
+    <div id="top1" class="score-bar red"></div>
+    <img class="medal-icon" src="https://png.pngtree.com/png-clipart/20230806/original/pngtree-gold-medal-set-badge-vector-the-best-award-png-image_9445686.png" alt="Second place medal" />
+    <div id="top2" class="score-bar green"></div>
+    <img class="medal-icon" src="https://png.pngtree.com/png-clipart/20230806/original/pngtree-gold-medal-set-badge-vector-the-best-award-png-image_9445686.png" alt="Third place medal" />
+    <div id="top3" class="score-bar yellow"></div>
+  </div>
+
+  <!-- Bottom container: Form and live comments -->
+  <div class="bottom-container">
+    <form class="wish-form" id="wish-form" aria-label="Add your Christmas wish">
+      <h2>ADD YOUR WISH</h2>
+      <input type="text" id="name" name="name" placeholder="Your Name" required aria-required="true" autocomplete="off" />
+      <textarea id="wish" name="wish" placeholder="Your Christmas wish..." rows="4" required aria-required="true"></textarea>
+      <button type="submit" aria-label="Submit your Christmas wish">Submit</button>
+    </form>
+
+    <section class="live-comments" aria-live="polite" aria-atomic="false" aria-label="Live comments">
+      <h3>Live Comments</h3>
+      <div class="comments-list" id="comments-list" role="log" aria-live="polite" aria-relevant="additions">
+        <ul id="comments-ul" style="margin:0; padding:0; list-style:none;"></ul>
+      </div>
+    </section>
+  </div>
+
+  <!-- Christmas music with controls -->
+  <audio id="christmas-music"
+    src="https://cdn.pixabay.com/download/audio/2022/12/18/audio_e39915e463.mp3?filename=christmas-decorations-relax-120039.mp3"
+    autoplay loop controls preload="auto" aria-label="Christmas background music"></audio>
+
+  <script>
+    function escapeHTML(str) {
+      return str.replace(/[&<>"']/g, m => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      })[m]);
+    }
+
+    const comments = [];
+    const commentsUl = document.getElementById('comments-ul');
+    const wishForm = document.getElementById('wish-form');
+    const top1Field = document.getElementById('top1');
+    const top2Field = document.getElementById('top2');
+    const top3Field = document.getElementById('top3');
+
+    function formatRelativeTime(timeStamp) {
+      const diffMs = Date.now() - timeStamp;
+      const mins = Math.floor(diffMs / 60000);
+      if (mins < 1) return 'just now';
+      if (mins === 1) return '1 minute ago';
+      if (mins < 60) return `${mins} minutes ago`;
+      const hours = Math.floor(mins / 60);
+      if (hours === 1) return '1 hour ago';
+      if (hours < 24) return `${hours} hours ago`;
+      const days = Math.floor(hours / 24);
+      if (days === 1) return '1 day ago';
+      return `${days} days ago`;
+    }
+
+    function generateId() {
+      return '_' + Math.random().toString(36).substr(2, 9);
+    }
+
+    // Update all comments UI and top 3 scoreboard text bars
+    function renderComments() {
+      comments.sort((a, b) => b.likes - a.likes || b.timestamp - a.timestamp);
+
+      commentsUl.innerHTML = '';
+
+      comments.forEach(comment => {
+        const li = document.createElement('li');
+        li.className = 'comment';
+
+        let safeName = escapeHTML(comment.name);
+        let safeText = escapeHTML(comment.text).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+        let relativeTime = formatRelativeTime(comment.timestamp);
+
+        li.innerHTML = `
+          <div><span class="name">${safeName}</span><span class="time">${relativeTime}</span></div>
+          <div class="text">${safeText}</div>
+          <div class="like-container ${comment.likedByUser ? 'liked' : ''}" title="Like" data-id="${comment.id}">
+            <svg class="like-icon" viewBox="0 0 24 24" aria-hidden="true" role="img" focusable="false">
+              <path fill="currentColor"
+                d="M9 21h-1a4 4 0 0 1-4-4v-6a4 4 0 0 1 4-4h2.5a.5.5 0 0 1 .47.33L12.94 10.5l1.8-4.5A.5.5 0 0 1 15 6h4a1 1 0 0 1 0 2h-3.3l-2.12 5.3a.95.95 0 0 1-.89.7H9v4a1 1 0 0 0 1 1h1v-1h4a1 1 0 0 1 0 2H9v1z" />
+            </svg>
+            <span class="like-count">${comment.likes}</span>
+          </div>
+        `;
+        commentsUl.appendChild(li);
+      });
+
+      // Truncate and show top 3 texts with colors
+      function safeTruncate(text, maxLength = 55) {
+        if (!text) return '';
+        return text.length > maxLength ? text.slice(0, maxLength - 3) + '...' : text;
+      }
+
+      top1Field.textContent = comments[0] ? safeTruncate(comments[0].text) : '';
+      top2Field.textContent = comments[1] ? safeTruncate(comments[1].text) : '';
+      top3Field.textContent = comments[2] ? safeTruncate(comments[2].text) : '';
+    }
+
+    // Initial sample comments with likes
+    [
+      {
+        id: generateId(),
+        name: "Marina",
+        text: "Merry Christmas! May God shower your life with unlimited blessings on this day.",
+        likes: 209,
+        timestamp: Date.now() - 20 * 60000,
+        likedByUser: false
+      },
+      {
+        id: generateId(),
+        name: "Bryan",
+        text: "Merry Xmas! Warmest greetings to you on this festive season and best wishes for the coming New Year.",
+        likes: 90,
+        timestamp: Date.now() - 50 * 60000,
+        likedByUser: false
+      }
+    ].forEach(cmt => comments.push(cmt));
+
+    renderComments();
+
+    // Handle new comment submit
+    wishForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const name = wishForm.name.value.trim();
+      const text = wishForm.wish.value.trim();
+      if (!name || !text) return;
+
+      comments.push({
+        id: generateId(),
+        name,
+        text,
+        likes: 0,
+        timestamp: Date.now(),
+        likedByUser: false
+      });
+
+      renderComments();
+      wishForm.reset();
+      wishForm.name.focus();
+    });
+
+    // Multiple likes allowed: clicks increment likes, no unlike toggle
+    commentsUl.addEventListener('click', e => {
+      const likeContainer = e.target.closest('.like-container');
+      if (!likeContainer) return;
+      const id = likeContainer.getAttribute('data-id');
+      if (!id) return;
+      const comment = comments.find(c => c.id === id);
+      if (!comment) return;
+
+      comment.likes++;
+      renderComments();
+    });
+
+    // Snowflake animation
+    function createSnowflake() {
+      const snowflake = document.createElement('div');
+      snowflake.classList.add('snowflake');
+      snowflake.textContent = '?';
+      snowflake.style.left = (Math.random() * 100) + 'vw';
+      const size = 14 + Math.random() * 12;
+      snowflake.style.fontSize = size + 'px';
+      const fallDuration = 10 + Math.random() * 10;
+      const swayDuration = 5 + Math.random() * 4;
+      snowflake.style.animationDuration = `${fallDuration}s, ${swayDuration}s`;
+      snowflake.style.opacity = (0.35 + Math.random() * 0.65).toFixed(2);
+      document.body.appendChild(snowflake);
+
+      setTimeout(() => {
+        snowflake.remove();
+      }, fallDuration * 1000);
+    }
+
+    setInterval(createSnowflake, 150);
+
+    // Music auto play fallback
+    const music = document.getElementById('christmas-music');
+    music.play().catch(() => {
+      const playMusicOnInteraction = () => {
+        music.play();
+        window.removeEventListener('click', playMusicOnInteraction);
+        window.removeEventListener('keydown', playMusicOnInteraction);
+      };
+      window.addEventListener('click', playMusicOnInteraction);
+      window.addEventListener('keydown', playMusicOnInteraction);
+    });
+  </script>
+
+</body>
+
+</html>
