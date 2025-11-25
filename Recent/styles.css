@@ -1,0 +1,111 @@
+/* ------------------------
+   Base and fonts
+   ------------------------ */
+:root{
+  --bg1: #e7f4fb;
+  --bg2: #bfe1f2;
+  --card: rgba(255,255,255,0.95);
+  --accent: #186b8e;
+  --primary: linear-gradient(120deg,#174766,#64bad4);
+  --radius: 18px;
+  --glass: rgba(255,255,255,0.75);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;font-size:16px;color:#1f2a2e;background:linear-gradient(180deg,var(--bg1),var(--bg2));-webkit-font-smoothing:antialiased}
+
+/* Top bar */
+.topbar{
+  position:sticky;top:0;display:flex;align-items:center;justify-content:space-between;padding:12px 18px;gap:12px;
+  z-index:60;
+  backdrop-filter: blur(6px);
+}
+.calendar{display:flex;align-items:center;gap:8px}
+.calendar img{width:56px;height:56px;object-fit:contain;border-radius:8px}
+.cal-text{font-weight:700;color:#8b1d1d}
+
+/* Title */
+.site-title{margin:0;font-size:20px;letter-spacing:3px;color:#08334a;font-weight:900}
+
+/* top-controls */
+.top-controls{display:flex;gap:8px;align-items:center}
+.hamburger{width:36px;height:28px;background:transparent;border:none;display:flex;flex-direction:column;gap:4px;cursor:pointer}
+.hamburger span{height:3px;background:#111;border-radius:4px}
+
+/* main layout */
+.main{max-width:1200px;margin:18px auto;padding:12px;display:grid;grid-template-columns:1fr;gap:18px}
+
+/* Tree area */
+.tree-area{
+  position:relative;display:flex;align-items:center;justify-content:center;height:300px;border-radius:14px;background:var(--glass);padding:12px;box-shadow:0 10px 30px rgba(0,0,0,0.06)
+}
+.tree-art{max-height:260px;max-width:100%;object-fit:contain;pointer-events:none}
+.scoreboard{position:absolute;right:12px;top:12px;width:260px;display:flex;flex-direction:column;gap:8px}
+.score-item{display:flex;align-items:center;gap:10px;padding:8px;border-radius:12px;background:rgba(255,255,255,0.85);box-shadow:inset 0 0 10px rgba(0,0,0,0.03)}
+.score-item .medal{font-size:20px}
+.score-text{font-size:13px;color:#0c2730;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+
+/* Interaction area */
+.interaction{display:grid;grid-template-columns:420px 1fr;gap:18px;align-items:start}
+.wish-form{background:var(--card);padding:18px;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,0.06)}
+.wish-form h2{margin:0 0 8px 0;font-size:18px}
+.label{display:block;margin:10px 0 6px 0;font-weight:700;font-size:13px}
+.wish-form input[type="text"], .wish-form textarea{width:100%;padding:12px;border-radius:12px;border:1px solid rgba(16,24,32,0.06);font-size:15px}
+.anon-row{display:flex;align-items:center;gap:8px;margin:8px 0}
+.form-row{display:flex;gap:10px;align-items:center;margin-top:12px}
+.btn{background:transparent;border:1px solid rgba(0,0,0,0.08);padding:8px 12px;border-radius:10px;cursor:pointer}
+.btn.primary{background:var(--primary);color:white;border:none;box-shadow:0 6px 18px rgba(38,84,110,0.2)}
+.btn.small{padding:6px 8px;font-size:13px}
+.hint{display:block;margin-top:10px;color:#6a6a6a;font-size:13px}
+
+/* comments */
+.live-comments{background:var(--card);padding:14px;border-radius:14px;box-shadow:0 8px 28px rgba(0,0,0,0.06);min-height:220px;max-height:520px;overflow:auto}
+.live-comments h3{margin:0 0 8px 0}
+.comments-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px}
+.comment{background:#fff;border-radius:12px;padding:10px;box-shadow:0 4px 12px rgba(0,0,0,0.04);position:relative}
+.comment .meta{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.comment .name{font-weight:800;color:#0a3b44}
+.comment .time{font-size:12px;color:#6b6b6b}
+.comment .text{margin-top:8px;white-space:pre-wrap;font-weight:600}
+.like-row{display:flex;gap:10px;align-items:center;margin-top:10px}
+.like-btn{display:inline-flex;gap:8px;align-items:center;padding:6px 10px;border-radius:12px;border:1px solid rgba(0,0,0,0.06);cursor:pointer;background:transparent}
+.like-btn.liked{background:linear-gradient(90deg,#ffd7d7,#ffd6f0);border-color:#eaa}
+
+/* music row */
+.music-row{position:fixed;left:16px;bottom:18px;display:flex;gap:8px;align-items:center;z-index:60;padding:8px;background:rgba(255,255,255,0.85);border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.08)}
+.music-row audio{display:none} /* we use our own play button */
+
+/* snow container full-screen overlay */
+#snow-container{position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:50;overflow:hidden}
+
+/* small screens (phone) */
+@media (max-width:900px){
+  .interaction{grid-template-columns:1fr;align-items:stretch}
+  .tree-area{height:220px}
+  .scoreboard{position:static;width:100%;display:flex;flex-direction:row;justify-content:space-between;margin-top:10px}
+  .wish-form{order:1}
+  .live-comments{order:2;max-height:360px}
+  .site-title{display:none}
+  .calendar img{width:46px;height:46px}
+}
+
+/* tablet landscape / iPad */
+@media (min-width:901px) and (max-width:1279px){
+  .main{max-width:960px}
+  .tree-area{height:260px}
+  .interaction{grid-template-columns:380px 1fr}
+}
+
+/* desktop */
+@media (min-width:1280px){
+  .main{max-width:1200px}
+  .tree-area{height:360px}
+}
+
+/* TV / very large screens */
+@media (min-width:1700px){
+  body{padding:28px}
+  .tree-area{height:520px}
+  .tree-art{max-height:470px}
+  .interaction{gap:28px}
+}
