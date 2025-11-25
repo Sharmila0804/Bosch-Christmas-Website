@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Merry Christmas Wishes — TV / Desktop / Tablet / Phone</title>
+
+  <!-- Link to CSS -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- top bar -->
+  <header class="topbar">
+    <div class="calendar" aria-hidden="true">
+      <img src="https://static.vecteezy.com/system/resources/previews/009/875/159/large_2x/3d-calendar-icon-date-25-red-color-free-png.png" alt="" />
+      <div class="cal-text">Blessed</div>
+    </div>
+
+    <h1 class="site-title">MERRY CHRISTMAS</h1>
+
+    <div class="top-controls">
+      <button id="toggle-snow" class="btn small">Toggle Snow</button>
+      <button id="open-menu" class="hamburger" aria-label="Menu" title="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- main content -->
+  <main class="main">
+    <section class="tree-area" aria-label="Christmas display">
+      <img class="tree-art" src="https://png.pngtree.com/png-clipart/20230913/original/pngtree-free-animated-christmas-vector-png-image_11062398.png" alt="Decorative christmas art" />
+      <div class="scoreboard" aria-label="Top wishes">
+        <div class="score-item first"><span class="medal">🥇</span><div id="top1" class="score-text"></div></div>
+        <div class="score-item second"><span class="medal">🥈</span><div id="top2" class="score-text"></div></div>
+        <div class="score-item third"><span class="medal">🥉</span><div id="top3" class="score-text"></div></div>
+      </div>
+    </section>
+
+    <section class="interaction" aria-label="Add wish and live comments">
+      <form id="wish-form" class="wish-form" aria-label="Add your Christmas wish">
+        <h2>Add your wish</h2>
+
+        <label for="name" class="label">Name</label>
+        <input id="name" name="name" autocomplete="off" placeholder="Your name (or check anonymous)" />
+
+        <div class="anon-row">
+          <input type="checkbox" id="anonymous" name="anonymous">
+          <label for="anonymous">Post as anonymous</label>
+        </div>
+
+        <label for="wish" class="label">Wish</label>
+        <textarea id="wish" name="wish" rows="4" placeholder="Write your Christmas wish..." required></textarea>
+
+        <div class="form-row">
+          <button type="submit" class="btn primary">Submit Wish</button>
+          <button type="button" id="clear-storage" class="btn">Clear saved</button>
+        </div>
+
+        <small class="hint">One like per user per wish. Likes & comments persist locally in your browser.</small>
+      </form>
+
+      <aside class="live-comments" aria-live="polite" aria-label="Live comments">
+        <h3>Live Comments</h3>
+        <ul id="comments-list" class="comments-list" role="log" aria-relevant="additions"></ul>
+      </aside>
+    </section>
+  </main>
+
+  <!-- floating audio controls -->
+  <div class="music-row" aria-hidden="false">
+    <audio id="christmas-music" preload="auto" loop>
+      <source src="https://cdn.pixabay.com/download/audio/2022/12/18/audio_e39915e463.mp3?filename=christmas-decorations-relax-120039.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <button id="music-toggle" class="btn small" title="Play / Pause music">Play music</button>
+    <a href="#" id="mute-toggle" class="btn small">Mute</a>
+  </div>
+
+  <!-- snow canvas container -->
+  <div id="snow-container" aria-hidden="true"></div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
